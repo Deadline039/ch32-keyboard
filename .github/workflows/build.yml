@@ -1,0 +1,28 @@
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  build-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get make cmake
+
+      - name: Download Toolchains
+        run: |
+          wget https://github.com/openwch/risc-none-embed-gcc/archive/refs/tags/8.2.0.tar.gz
+          tar -xzf 8.2.0.tar.gz
+          echo "$(pwd)/risc-none-embed-gcc-8.2.0/bin" >> $GITHUB_PATH
+
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
