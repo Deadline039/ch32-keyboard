@@ -124,27 +124,12 @@ void USB_Interrupts_Config(void)
     NVIC_Init(&NVIC_InitStructure);
 }
 
-#if 1
 void usb_dc_low_level_init(void)
 {
     Set_USBConfig();
-
-    // WRITE_REG(USB->CNTR, USB_CNTR_FRES);
-    // WRITE_REG(USB->CNTR, 0);
-    // WRITE_REG(USB->ISTR, 0);
-    // WRITE_REG(USB->CNTR, USB_CNTR_RESETM | USB_CNTR_SUSPM | USB_CNTR_WKUPM);
-    //
-    // uint32_t *USB_EPXR_TABLE = (uint32_t *)&USB->EP0R;
-    // for (uint32_t i = 0; i < 8; i++) {
-    //     /* clear all */
-    //     *(uint16_t *)&USB_EPXR_TABLE[i] &= 0x7F7F & (USB_EP_CTR_RX | USB_EP_SETUP | USB_EP_T_FIELD | USB_EP_KIND | USB_EP_CTR_TX | USB_EPADDR_FIELD);
-    // }
-
-    // WRITE_REG(USB->CNTR, USB_CNTR_CTRM | USB_CNTR_WKUPM | USB_CNTR_SUSPM | USB_CNTR_ERRM | USB_CNTR_SOFM | USB_CNTR_ESOFM | USB_CNTR_RESETM);
 
     USB_Port_Set(DISABLE, DISABLE);
     Delay_Ms(20);
     USB_Port_Set(ENABLE, ENABLE);
     USB_Interrupts_Config();
 }
-#endif
