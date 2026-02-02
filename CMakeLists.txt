@@ -59,7 +59,7 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-add_compile_options(-Wall -Wextra -Wpedantic -Wstack-usage=2048)
+add_compile_options(-Wall -Wextra -Wstack-usage=2048)
 
 include_directories(
         Core
