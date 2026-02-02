@@ -12,13 +12,13 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install make cmake
+          sudo apt-get install make cmake unzip
 
       - name: Download Toolchains
         run: |
-          wget https://github.com/openwch/risc-none-embed-gcc/archive/refs/tags/8.2.0.tar.gz
-          tar -xzf 8.2.0.tar.gz
-          echo "$(pwd)/risc-none-embed-gcc-8.2.0/bin" >> $GITHUB_PATH
+          wget https://github.com/ch32-riscv-ug/MounRiver_Studio_Community_miror/releases/download/1.92-toolchain/riscv-none-embed-gcc-8-linux-1.92.zip
+          unzip riscv-none-embed-gcc-8-linux-1.92.zip
+          echo "$(pwd)/riscv-none-embed-gcc-8-linux-1.92/bin" >> $GITHUB_PATH
 
       - name: Build
         run: |
